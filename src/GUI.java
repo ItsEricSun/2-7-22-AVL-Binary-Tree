@@ -108,6 +108,7 @@ class GUI
     	 AVLTree tree = new AVLTree();
     	    
     	 while(true) {
+    		 try {
         	 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 
     		 System.out.println("Enter 1 for insert, 2 for delete, 3 for stop");
@@ -129,6 +130,9 @@ class GUI
     			 System.out.println("");
     		 } else if(choice == 3) {
     			 break;
+    		 }
+    		 } catch (Exception e) {
+    			 System.out.println("Make sure to enter integer");
     		 }
     	 }
          /* Constructing tree given in the above figure */
