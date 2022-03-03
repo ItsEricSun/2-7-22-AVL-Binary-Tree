@@ -5,18 +5,15 @@ public class TreeMain {
 	public static void main(String[] args) {
     	 AVLTree tree = new AVLTree();
     	 List<Integer> l = new ArrayList<>();
-    	    
     	 while(true) {
     		 try {
-	        	 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	
+	        	 Scanner sc = new Scanner(System.in);  
 	    		 System.out.println("Enter 1 for insert, 2 for delete, 3 for stop");
-	    		 	
-	    		 Integer choice = myObj.nextInt();  // Read user input
+	    		 Integer choice = sc.nextInt();
 	    		 if(choice == 1) {
 	    			 System.out.println("What Number do You Want to Insert?");
-	    			 myObj = new Scanner(System.in);
-	    			 Integer number = myObj.nextInt();
+	    			 sc = new Scanner(System.in);
+	    			 Integer number = sc.nextInt();
 	    			 if(l.contains(number)) {
 	    				 System.out.println("Number Already Exists\n");
 	    				 continue;
@@ -31,18 +28,18 @@ public class TreeMain {
 	    			 System.out.println("");
 	    		 } else if(choice == 2) {
 	    			 System.out.println("What Number do You Want to Delete?");
-	    			 myObj = new Scanner(System.in);
-	    			 Integer number = myObj.nextInt();
+	    			 sc = new Scanner(System.in);
+	    			 Integer number = sc.nextInt();
 	    			 if(!l.contains(number)) {
 	    				 System.out.println("Number Doesn't Exist\n");
 	    				 continue;
 	    			 }
 	    			 l.remove(number);
-	    			 tree.root = tree.deleteNode(tree.root, number);
+	    			 tree.root = tree.delete(tree.root, number);
 	    			 printTree(tree.root, null, false);
 	    			 System.out.println("");
 	    		 } else if(choice == 3) {
-	    			 myObj.close();
+	    			 sc.close();
 	    			 break;
 	    		 }
     		 } catch (Exception e) {
@@ -51,45 +48,36 @@ public class TreeMain {
     	 }
     }
 	
-	public static void showTrunks(Trunk p) {
-        if (p == null) {
+	public static void showSection(Section s) {
+        if (s == null) {
             return;
         }
- 
-        showTrunks(p.prev);
-        System.out.print(p.str);
+        showSection(s.prev);
+        System.out.print(s.str);
     }
  
-    public static void printTree(Node root, Trunk prev, boolean isLeft) {
+    public static void printTree(Node root, Section prev, boolean isRight) {
         if (root == null) {
             return;
         }
- 
         String prev_str = "     ";
-        Trunk trunk = new Trunk(prev, prev_str);
- 
-        printTree(root.right, trunk, true);
- 
+        Section section = new Section(prev, prev_str);
+        printTree(root.right, section, true);
         if (prev == null) {
-            trunk.str = "————";
-        }
-        else if (isLeft) {
-            trunk.str = "/————";
+            section.str = "————";
+        } else if (isRight) {
+            section.str = "/————";
             prev_str = "    |";
-        }
-        else {
-            trunk.str = "\\————";
+        } else {
+            section.str = "\\————";
             prev.str = prev_str;
         }
- 
-        showTrunks(trunk);
+        showSection(section);
         System.out.println(" " + root.data);
- 
         if (prev != null) {
             prev.str = prev_str;
         }
-        trunk.str = "    |";
- 
-        printTree(root.left, trunk, false);
+        section.str = "    |";
+        printTree(root.left, section, false);
     }
 }

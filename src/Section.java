@@ -1,9 +1,9 @@
 
-public class Trunk {
-	Trunk prev;
+public class Section {
+	Section prev;
     String str;
  
-    Trunk(Trunk prev, String str)
+    Section(Section prev, String str)
     {
         this.prev = prev;
         this.str = str;
