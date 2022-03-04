@@ -64,12 +64,12 @@ public class TreeMain {
         Section section = new Section(prev, prev_str);
         printTree(root.right, section, true);
         if (prev == null) {
-            section.str = "â€”â€”â€”â€”";
+            section.str = "————";
         } else if (isRight) {
-            section.str = "/â€”â€”â€”â€”";
+            section.str = "/————";
             prev_str = "    |";
         } else {
-            section.str = "\\â€”â€”â€”â€”";
+            section.str = "\\————";
             prev.str = prev_str;
         }
         showSection(section);
