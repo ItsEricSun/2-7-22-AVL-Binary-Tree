@@ -48,7 +48,7 @@ public class TreeMain {
     	 }
     }
 	
-	public static void showSection(Section s) {
+    public static void showSection(Section s) {
         if (s == null) {
             return;
         }
@@ -64,12 +64,12 @@ public class TreeMain {
         Section section = new Section(prev, prev_str);
         printTree(root.right, section, true);
         if (prev == null) {
-            section.str = "————";
+            section.str = "â€”â€”â€”â€”";
         } else if (isRight) {
-            section.str = "/————";
+            section.str = "/â€”â€”â€”â€”";
             prev_str = "    |";
         } else {
-            section.str = "\\————";
+            section.str = "\\â€”â€”â€”â€”";
             prev.str = prev_str;
         }
         showSection(section);
